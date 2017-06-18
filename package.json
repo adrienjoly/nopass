@@ -1,0 +1,17 @@
+{
+  "name": "nopass",
+  "version": "1.0.0",
+  "description": "Let's get rid of passwords",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrien Joly",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "connect": "^3.4.1",
+    "serve-static": "^1.10.2"
+  }
+}
