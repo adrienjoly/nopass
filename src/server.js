@@ -5,8 +5,10 @@ module.exports = class Server {
   }
 
   createFlow (params, callback) {
-    // TODO
-    callback(null, {})
+    this.db.pushData('/flows', {}, ({ key, value }) =>
+      callback(null, { flowToken: key.split('/').pop() })
+    )
+    
   }
 
 }
