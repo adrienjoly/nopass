@@ -2,9 +2,9 @@
   "name": "nopass",
   "version": "1.0.0",
   "description": "Let's get rid of passwords",
-  "main": "src/server.js",
+  "main": "src/http-server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node src/http-server.js",
     "test": "jasmine ./test/*.spec.js"
   },
   "author": "Adrien Joly",
