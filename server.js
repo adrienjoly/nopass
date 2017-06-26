@@ -3,13 +3,6 @@ var connect = require('connect');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var db = require('./db-memory');
-/* db tests:
-db.fetchData()
-db.fetchData('/test')
-db.setData('/test', 'coucou');
-db.fetchData('/test')
-db.fetchData()
-*/
 
 var PORT = process.env.PORT || 8080;
 
