@@ -3,9 +3,9 @@ var connect = require('connect');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var Server = require('./Server.js');
-var db = require('../lib/db-memory');
+var Db = require('../lib/db-memory');
 
-var methods = new Server(db);
+var methods = new Server(new Db());
 
 var PORT = process.env.PORT || 8080;
 
