@@ -40,3 +40,45 @@ describe('Server: sendToFlow', function() {
 
 })
 
+describe('Server: checkFlow', function() {
+
+  it('fails if flowToken does not exist', function(done) {
+    new Server(new Db()).checkFlow(666, { code: 'XYZ' }, (err) =>
+      done(expect(err).toBeTruthy()))
+  })
+
+  it('fails if code is not valid', function(done) {
+    var server = new Server(new Db())
+    server.createFlow({}, (err, res) => 
+      server.sendToFlow(res.flowToken, { email: 'test@test.com' }, (err) =>
+        server.checkFlow(res.flowToken, { code: 'XYZ' }, (err) =>
+          done(expect(err).toBeTruthy()))))
+  })
+
+  it('succeeds if flowToken and code match', function(done) {
+    var flowToken
+    var fakeSendEmail = ({ to, code }) =>
+      server.checkFlow(flowToken, { code }, (err) =>
+        done(expect(err).toBeFalsy()))
+    var server = new Server(new Db(), fakeSendEmail)
+    server.createFlow({}, (err, res) => {
+      flowToken = res.flowToken
+      server.sendToFlow(res.flowToken, { email: 'test@test.com' }, () => {})
+    })
+  })
+
+  it('fails when trying to re-use flowToken', function(done) {
+    var flowToken
+    var fakeSendEmail = ({ to, code }) =>
+      server.checkFlow(flowToken, { code }, (err) =>
+        server.checkFlow(flowToken, { code }, (err) =>
+          done(expect(err).toBeTruthy())))
+    var server = new Server(new Db(), fakeSendEmail)
+    server.createFlow({}, (err, res) => {
+      flowToken = res.flowToken
+      server.sendToFlow(res.flowToken, { email: 'test@test.com' }, () => {})
+    })
+  })
+
+})
+
