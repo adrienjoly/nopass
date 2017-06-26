@@ -1,17 +1,42 @@
 var Server = require('../src/Server.js')
 var Db = require('../lib/db-memory.js')
-var server = new Server(new Db())
 
 describe('Server: createFlow', function() {
 
   it('returns no error', function(done) {
-    server.createFlow({}, (err) =>
-      done(expect(err).toBeFalsy))
+    new Server(new Db()).createFlow({}, (err) =>
+      done(expect(err).toBeFalsy()))
   })
 
   it('returns a flowToken', function(done) {
-    server.createFlow({}, (err, res) =>
+    new Server(new Db()).createFlow({}, (err, res) =>
       done(expect(res.flowToken).toBeTruthy()))
   })
 
 })
+
+describe('Server: sendToFlow', function() {
+
+  it('fails if flowToken does not exist', function(done) {
+    new Server(new Db()).sendToFlow(666, { email: 'test@test.com' }, (err) =>
+      done(expect(err).toBeTruthy()))
+  })
+
+  it('fails if email is not valid', function(done) {
+    var server = new Server(new Db())
+    server.createFlow({}, (err, res) => {
+      server.sendToFlow(res.flowToken, { email: 'test@' }, (err) =>
+        done(expect(err).toBeTruthy()))
+    })
+  })
+
+  it('succeeds if flowToken exists and email is valid', function(done) {
+    var server = new Server(new Db())
+    server.createFlow({}, (err, res) => {
+      server.sendToFlow(res.flowToken, { email: 'test@test.com' }, (err) =>
+        done(expect(err).toBeFalsy()))
+    })
+  })
+
+})
+
