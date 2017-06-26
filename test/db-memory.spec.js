@@ -1,5 +1,4 @@
-var assert = require('assert')
-var db = require('./db-memory')
+var db = require('../lib/db-memory')
 
 const TEST_VALUE = 'coucou'
 
