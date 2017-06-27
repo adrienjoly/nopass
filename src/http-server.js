@@ -6,6 +6,7 @@ var Server = require('./Server.js');
 var Db = require('../lib/db-memory');
 
 var methods = new Server(new Db());
+// TODO: also pass email sender
 
 var PORT = process.env.PORT || 8080;
 
@@ -36,6 +37,9 @@ app.use('/flow', function (req, response, next) {
   methods.createFlow(req.body, (err, res) =>
     response.end(JSON.stringify(err ? { error: err } : { ok: res || 'OK' })));
 });
+
+// TODO: add POST /flow/:flowToken/send
+// TODO: add GET /flow/:flowToken/check
 
 // Listen for HTTP/HTTPS conncections on port 3000
 httpServer.listen(PORT);
