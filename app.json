@@ -1,0 +1,16 @@
+{
+  "name": "Nopass",
+  "description": "Get rid of password-based user identification.",
+  "repository": "https://github.com/adrienjoly/nopass",
+  "logo": "https://cdn.rawgit.com/adrienjoly/nopass/master/icon.png",
+  "keywords": [
+    "login",
+    "sign-in",
+    "user-identification",
+    "authentication",
+    "authorization"
+  ],
+  "scripts": {
+    "start": "node src/http-server.js"
+  }
+}
