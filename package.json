@@ -4,6 +4,7 @@
   "description": "Let's get rid of passwords",
   "main": "src/http-server.js",
   "scripts": {
+    "gen-doc": "node_modules/.bin/jsdoc src/Server.js --destination docs",
     "start": "node src/http-server.js",
     "test": "jasmine"
   },
@@ -11,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "jasmine": "2.6.0",
-    "jasmine-spec-reporter": "^4.1.1"
+    "jasmine-spec-reporter": "^4.1.1",
+    "jsdoc": "^3.4.3"
   },
   "dependencies": {
     "body-parser": "^1.14.2",
