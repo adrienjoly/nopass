@@ -2,7 +2,7 @@
   "name": "Nopass",
   "description": "Get rid of password-based user identification.",
   "repository": "https://github.com/adrienjoly/nopass",
-  "logo": "https://cdn.rawgit.com/adrienjoly/nopass/master/icon.png",
+  "logo": "https://cdn.jsdelivr.net/gh/adrienjoly/nopass@master/icon.png",
   "keywords": [
     "login",
     "sign-in",
